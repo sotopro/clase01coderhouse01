@@ -8,12 +8,16 @@ export const styles = StyleSheet.create({
   content: {
     flexDirection: "row",
     justifyContent: "space-between",
-    marginTop: 40,
+    marginTop: 60,
     marginHorizontal: 20,
   },
   input: {
     borderBottomWidth: 1,
     borderBottomColor: "#6B4E71",
     flex: 0.85,
+  },
+  itemList: {
+    marginVertical: 10,
+    marginHorizontal: 20,
   },
 });
