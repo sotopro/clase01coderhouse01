@@ -5,9 +5,11 @@ import {
   Button,
   Text,
   FlatList,
-  Modal,
   TouchableOpacity,
 } from "react-native";
+import CustomModal from "./src/components/modal/index";
+import ListItem from "./src/components/list-item/index";
+import Input from "./src/components/input/index";
 import { styles } from "./styles";
 
 export default function App() {
@@ -42,15 +44,7 @@ export default function App() {
   };
 
   const renderItem = ({ item }) => (
-    <View style={styles.containerItemList}>
-      <Text style={styles.itemList}>{item.value}</Text>
-      <TouchableOpacity
-        onPress={() => onHandlerModal(item.id)}
-        style={styles.deleteButton}
-      >
-        <Text style={styles.deleteButtonText}>X</Text>
-      </TouchableOpacity>
-    </View>
+    <ListItem item={item} onPress={onHandlerModal} />
   );
 
   const keyExtractor = (item) => item.id.toString();
@@ -58,12 +52,13 @@ export default function App() {
   return (
     <View style={styles.container}>
       <View style={styles.content}>
-        <TextInput
+        <Input
           placeholder="new task"
           style={styles.input}
           placeholderTextColor="#6B4E71"
           value={text}
           onChangeText={(text) => handleOnChangeText(text)}
+          keyboardType="numeric"
         />
         <Button title="ADD" onPress={() => addItem()} color="#6B4E71" />
       </View>
@@ -73,7 +68,7 @@ export default function App() {
         keyExtractor={keyExtractor}
         style={styles.containerList}
       />
-      <Modal
+      <CustomModal
         animationType="slide"
         visible={modalVisible}
         onRequestClose={() => null}
@@ -93,7 +88,7 @@ export default function App() {
             color="#6B4E71"
           />
         </TouchableOpacity>
-      </Modal>
+      </CustomModal>
     </View>
   );
 }
